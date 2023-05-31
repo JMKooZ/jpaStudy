@@ -9,25 +9,31 @@ import test.Dto.Member;
 public class InsertMember {
     public static void main(String[] args) {
         // EntityManagerFactory 생성
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("h2");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         // EntityManager 생성
         EntityManager em = emf.createEntityManager();
         // EntityTransaction 생성
-        EntityTransaction et = em.getTransaction();
-        et.begin();
+        EntityTransaction ex = em.getTransaction();
+        ex.begin();
 
         try {
             // entity 생성
-            Member member = new Member(1, "사쿠라",10000);
+//            Member member = new Member(1, "홍길동",10000);
+            Member findMember = em.find(Member.class,1);
+            System.out.println("member: "+findMember);
+            System.out.println("findMember.getId() = " + findMember.getId());
+            findMember.setName("홍길순");
             // entity 영속화
-            em.persist(member);
+            em.persist(findMember);
             // 커밋 후 insert 쿼리문 전송
-            et.commit();
+            ex.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            et.rollback();
+            ex.rollback();
         } finally {
+            // entityManager 사용하고 꼭 닫아줘야함.
             em.close();
         }
+        emf.close();
     }
 }
