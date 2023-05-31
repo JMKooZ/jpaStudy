@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-    <persistence-unit name="h2">
+    <persistence-unit name="hello">
         <properties>
             <!-- JDBC 필수 정보 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
@@ -16,8 +16,8 @@
             <property name="hibernate.format_sql" value="true"/>
             <!-- 쿼리문 관련 정보를 주석으로 보여준다. -->
             <property name="hibernate.use_sql_comments" value="true"/>
-            <!-- 하이버네이트에서 DDL을 조작한다. -->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+<!--            &lt;!&ndash; 하이버네이트에서 DDL을 조작한다. &ndash;&gt;-->
+<!--            <property name="hibernate.hbm2ddl.auto" value="create"/>-->
         </properties>
     </persistence-unit>
 </persistence>
