@@ -6,29 +6,21 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import test.Dto.Member;
 
-public class InsertMember {
+public class DeleteMember {
+
     public static void main(String[] args) {
-        // EntityManagerFactory 생성
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
-        // EntityManager 생성
         EntityManager em = emf.createEntityManager();
-        // EntityTransaction 생성
         EntityTransaction et = em.getTransaction();
         et.begin();
-
         try {
-            // entity 생성
-            Member member1 = new Member(1, "홍길동",10000);
-            Member member2 = new Member(2, "홍길순",10000);
-            // entity 영속화
-            em.persist(member1);
-            em.persist(member2);
-            // 커밋 후 insert 쿼리문 전송
+            Member findMember = em.find(Member.class, 1);
+            // remove(object) 는 sql delete 하는 메서드
+            em.remove(findMember);
             et.commit();
-        } catch (Exception e) {
+        }catch (Exception e){
             et.rollback();
-        } finally {
-            // entityManager 사용하고 꼭 닫아줘야함.
+        }finally {
             em.close();
         }
         emf.close();

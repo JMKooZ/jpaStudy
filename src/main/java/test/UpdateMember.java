@@ -8,26 +8,26 @@ import test.Dto.Member;
 
 public class UpdateMember {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("h2");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
         try {
-            Member member1 = new Member(1,"정민규",10000);
-            Member member2 = new Member(2,"이정현",30000);
-            em.persist(member1);
-            em.persist(member2);
-
+            // update 경우 변경할 객체를 먼저 찾아와서 알맞게 변경해주면됌.
+            // 따로 em.persist(member1) 영속성을 부여할 필요가 없음.
+            Member member1 = em.find(Member.class, 1);
+            Member member2 = em.find(Member.class, 2);
+            //dto 에 deposit / withdraw 메서드 만들어둠
             member1.deposit(30000);
             member2.withdraw(30000);
-
+            // 커밋이 진행될때 sql이 db에 전송된다(flush)
             et.commit();
         }catch (Exception e){
-            e.printStackTrace();
             et.rollback();
         }finally {
             em.close();
         }
+        emf.close();
     }
 
 }
