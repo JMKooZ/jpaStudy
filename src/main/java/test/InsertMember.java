@@ -13,8 +13,8 @@ public class InsertMember {
         // EntityManager 생성
         EntityManager em = emf.createEntityManager();
         // EntityTransaction 생성
-        EntityTransaction ex = em.getTransaction();
-        ex.begin();
+        EntityTransaction et = em.getTransaction();
+        et.begin();
 
         try {
             // entity 생성
@@ -26,10 +26,9 @@ public class InsertMember {
             // entity 영속화
             em.persist(findMember);
             // 커밋 후 insert 쿼리문 전송
-            ex.commit();
+            et.commit();
         } catch (Exception e) {
-            e.printStackTrace();
-            ex.rollback();
+            et.rollback();
         } finally {
             // entityManager 사용하고 꼭 닫아줘야함.
             em.close();

@@ -23,7 +23,6 @@ public class UpdateMember {
 
             et.commit();
         }catch (Exception e){
-            e.printStackTrace();
             et.rollback();
         }finally {
             em.close();
