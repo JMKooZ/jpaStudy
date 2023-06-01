@@ -18,13 +18,11 @@ public class InsertMember {
 
         try {
             // entity 생성
-//            Member member = new Member(1, "홍길동",10000);
-            Member findMember = em.find(Member.class,1);
-            System.out.println("member: "+findMember);
-            System.out.println("findMember.getId() = " + findMember.getId());
-            findMember.setName("홍길순");
+            Member member1 = new Member(1, "홍길동",10000);
+            Member member2 = new Member(2, "홍길순",10000);
             // entity 영속화
-            em.persist(findMember);
+            em.persist(member1);
+            em.persist(member2);
             // 커밋 후 insert 쿼리문 전송
             et.commit();
         } catch (Exception e) {
