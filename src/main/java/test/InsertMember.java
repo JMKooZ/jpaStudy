@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import test.Dto.Member;
+import test.Dto.RoleType;
 
 public class InsertMember {
     public static void main(String[] args) {
@@ -18,8 +19,16 @@ public class InsertMember {
 
         try {
             // entity 생성
-            Member member1 = new Member(1, "홍길동",10000);
-            Member member2 = new Member(2, "홍길순",10000);
+            Member member1 = new Member();
+            member1.setUserId("A");
+            member1.setUserName("홍길동");
+            member1.setMoney(0);
+            member1.setRoleType(RoleType.ADMIN);
+            Member member2 = new Member();
+            member2.setUserId("B");
+            member2.setUserName("홍길순");
+            member2.setMoney(0);
+            member2.setRoleType(RoleType.USER);
             // entity 영속화
             em.persist(member1);
             em.persist(member2);

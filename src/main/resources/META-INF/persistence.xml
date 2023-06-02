@@ -16,8 +16,9 @@
             <property name="hibernate.format_sql" value="true"/>
             <!-- 쿼리문 관련 정보를 주석으로 보여준다. -->
             <property name="hibernate.use_sql_comments" value="true"/>
-<!--            &lt;!&ndash; 하이버네이트에서 DDL을 조작한다. &ndash;&gt;-->
-<!--            <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+<!--             하이버네이트에서 DDL을 조작한다. -->
+<!--            create , create-drop, update , none-->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
         </properties>
     </persistence-unit>
 </persistence>
