@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = {
+@Table(name = "Test",uniqueConstraints = {
     @UniqueConstraint(
         name = "contstraintName",
         columnNames = {"name", "id"}
