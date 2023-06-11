@@ -23,7 +23,7 @@ public class Member {
     // 왜냐하면 너무 복잡한 설계가 된다.
     // 멤버 객체에는 멤버 관련 필드만 있는게 좋음
     // 실무상 잘못된 코드 (예제니깐 쓰인것임)
-    @OneToMany(mappedBy = "Member")
+    @OneToMany(mappedBy = "member")
     private List<Order> orderList = new ArrayList<>();
 
     public Member() {

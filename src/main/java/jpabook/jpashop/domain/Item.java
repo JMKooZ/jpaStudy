@@ -1,9 +1,12 @@
 package jpabook.jpashop.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Item {
@@ -14,7 +17,9 @@ public class Item {
     private String name;
     private int price;
     private int stockQuantity;
-
+    @ManyToMany(mappedBy = "itemList")
+    private List<Category> categoryList = new ArrayList<>();
+    //양방향 매핑을 해주었다.
     public Item() {
 
     }
