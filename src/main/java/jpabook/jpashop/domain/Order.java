@@ -3,6 +3,7 @@ package jpabook.jpashop.domain;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,13 +38,32 @@ public class Order {
     // 얘는 비즈니스 적으로 충분히 의미 있는 양방향 설계
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItemList = new ArrayList<>();
-
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+    // 1 대 1 관계는 다대일, 일대다 관계처럼 fk키가 있는곳에 조인컬럼을 지정을해준다. 연관관계의 주인.
     public Order() {
     }
     // 양방향 관계 편의 메서드
     public void addOrderItemList(OrderItem orderItem){
         orderItemList.add(orderItem);
         orderItem.setOrder(this);
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
     public Long getId() {

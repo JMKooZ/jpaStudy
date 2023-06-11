@@ -1,4 +1,4 @@
-package org.etample;
+package org.example;
 
 public class Main {
 
